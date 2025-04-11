@@ -107,11 +107,12 @@ const Profile = () => {
 
         {/* Profile Info */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mb-6">
-          <img
-            src={photoURL || "https://via.placeholder.com/100"}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover mb-4"
-          />
+        <img
+  src={photoURL || "https://placehold.co/100x100"}
+  alt="Profile"
+  className="w-24 h-24 rounded-full object-cover mb-4"
+/>
+
 
           <p className="text-gray-700 dark:text-gray-200 mb-2"><strong>Email:</strong> {user.email}</p>
 
