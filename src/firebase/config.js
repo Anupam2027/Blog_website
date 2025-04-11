@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6hUYhTxRyE-L0X_WFiqJhFsj_DJiYQOY",
@@ -13,7 +15,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 // Replace with your actual email
-export const ADMIN_EMAIL = "akm.official.02@gmail.com";
+export const ADMIN_EMAIL = "anupam.kumari.mishra@gmail.com";
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
