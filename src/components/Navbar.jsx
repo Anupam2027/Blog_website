@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
 import { ADMIN_EMAIL } from "../firebase/config";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -11,7 +12,25 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-6 py-4 shadow bg-white dark:bg-gray-900">
       {/* Logo / Brand */}
-      <h1 className="text-2xl font-bold text-gray-800 dark:text-white">DevLog</h1>
+      <h1
+  className={`text-2xl font-bold ${
+    user?.email === ADMIN_EMAIL
+      ? "text-yellow-500 animate-pulse"
+      : "text-gray-800 dark:text-white"
+  }`}
+>
+  DevLog
+</h1>
+
+      {/* Admin-only Dashboard link */}
+      {user?.email === ADMIN_EMAIL && (
+  <>
+    
+    <span className="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs font-semibold">
+      👑 Admin
+    </span>
+  </>
+)}
 
       {/* Right Side Navigation Links */}
       <div className="flex items-center gap-4">
@@ -21,18 +40,24 @@ const Navbar = () => {
           <>
             <Link to="/write" className="text-gray-700 dark:text-white">Write</Link>
             <Link to="/profile" className="text-gray-700 dark:text-white">Profile</Link>
-
-            {/* Admin-only Dashboard link */}
-            {user.email === ADMIN_EMAIL && (
-              <Link to="/admin" className="text-gray-700 dark:text-white">Dashboard</Link>
-            )}
+{/* Admin-only Dashboard link */}
+{user?.email === ADMIN_EMAIL && (
+  <>
+    <Link to="/admin" className="text-gray-700 dark:text-white">Dashboard</Link>
+  </>
+)}
+            
 
             <button
-              onClick={logout}
-              className="text-red-500 hover:underline"
-            >
-              Logout
-            </button>
+  onClick={() => {
+    logout();
+    toast.success("Logged out successfully!");
+  }}
+  className="text-red-500 hover:underline"
+>
+  Logout
+</button>
+
           </>
         ) : (
           <>
