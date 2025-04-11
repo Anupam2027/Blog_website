@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import PageWrapper from "../components/PageWrapper";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import { sendPasswordResetEmail } from "firebase/auth";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +24,20 @@ const Login = () => {
       toast.error("Login Failed: " + err.message);
     }
   };
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast.error("Please enter your email first.");
+      return;
+    }
+  
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Password reset email sent!");
+    } catch (error) {
+      toast.error("Error sending reset email: " + error.message);
+    }
+  };
+  
 
   const handleGoogleLogin = async () => {
     try {
@@ -62,6 +78,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <p
+  onClick={handleForgotPassword}
+  className="text-sm text-blue-500 hover:underline cursor-pointer text-right mb-4"
+>
+  Forgot Password?
+</p>
+
 
           <button
             type="submit"
