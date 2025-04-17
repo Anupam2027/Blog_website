@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ADMIN_EMAIL } from "../firebase/config";
@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
   const { user, logout } = useAuth();
 
   const handleLogout = () => {
@@ -17,6 +18,17 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md fixed top-0 w-full z-50">
@@ -69,6 +81,7 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            ref={menuRef}
             key="mobile-menu"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
