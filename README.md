@@ -1,12 +1,31 @@
-# React + Vite
+# 📝 Blog Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured blog platform developed using **React.js** and **Firebase**, designed for secure content creation and management. The platform allows users to create, edit, and publish blog posts with Google and Email-Password Authentication.
 
-Currently, two official plugins are available:
+## 📌 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Google and Email Authentication using Firebase
+- Create, edit, and delete blog posts
+- Real-time database updates with Firestore
+- Responsive UI for mobile, tablet, and desktop
+- Modern UI built with **Tailwind CSS**
+- Live blog publishing and previewing
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js
+- Firebase (Authentication, Firestore)
+- Tailwind CSS
+- Vercel (Hosting)
+
+## 🔗 Live Demo
+
+[Click here to visit the Blog Website](https://doblogging.vercel.app)
+
+## 📖 How to Run Locally
+
+```bash
+git clone https://github.com/Anupam2027/Blog_website.git
+cd Blog_website
+npm install
+npm run dev
